@@ -1,1 +1,237 @@
+/* --- SPIDER-VERSE vs DRAGON BALL SUPER: PS3 ULTRA EDITION STYLES --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #030308;
+    color: #ffffff;
+}
+
+#webgl-container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Glassmorphism PS3 UI Theme */
+.glass-panel {
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+}
+
+#hud-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25px 40px;
+}
+
+.top-hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.player-status {
+    width: 42%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.player-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 900;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+}
+
+.bar-container {
+    height: 26px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+}
+
+.health-bar {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+    transition: width 0.15s ease-out;
+    box-shadow: 0 0 12px #10b981;
+}
+
+.ki-bar {
+    height: 14px;
+    width: 0%;
+    background: linear-gradient(90deg, #3b82f6 0%, #ff0055 100%);
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px #3b82f6;
+}
+
+.p2-align {
+    align-items: flex-end;
+}
+
+.p2-bar-dir {
+    direction: rtl;
+}
+
+.timer-box {
+    padding: 10px 28px;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #fbbf24;
+    border-radius: 10px;
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.8);
+}
+
+/* Character Selection Roster */
+#selection-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    background: radial-gradient(circle at center, rgba(15,23,42,0.85) 0%, rgba(3,3,8,0.98) 100%);
+}
+
+.menu-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ef4444, #fbbf24, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
+    margin-bottom: 5px;
+}
+
+.roster-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 12px;
+    width: 95%;
+    max-width: 1300px;
+    max-height: 62vh;
+    overflow-y: auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.roster-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+.roster-grid::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 4px;
+}
+
+.roster-card {
+    aspect-ratio: 1;
+    background: #11131c;
+    border: 2px solid #2a2d3d;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 6px;
+    color: #cbd5e1;
+}
+
+.roster-card:hover, .roster-card.selected-p1 {
+    border-color: #ef4444;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+    transform: scale(1.1);
+    background: rgba(239, 68, 68, 0.25);
+    color: #fff;
+    z-index: 5;
+}
+
+.roster-card.selected-p2 {
+    border-color: #3b82f6;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+    transform: scale(1.1);
+    background: rgba(59, 130, 246, 0.25);
+    color: #fff;
+    z-index: 5;
+}
+
+.start-btn {
+    pointer-events: auto;
+    padding: 16px 52px;
+    font-size: 1.3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(135deg, #dc2626, #2563eb);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 35px;
+    cursor: pointer;
+    box-shadow: 0 6px 25px rgba(37, 99, 235, 0.6);
+    transition: all 0.2s ease;
+}
+
+.start-btn:hover {
+    transform: scale(1.06) translateY(-2px);
+    box-shadow: 0 8px 35px rgba(239, 68, 68, 0.8);
+    border-color: #fbbf24;
+}
+
+.controls-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 40px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    gap: 25px;
+}
